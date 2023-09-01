@@ -14,7 +14,6 @@ from homeassistant.components.number import (
 
 
 from homeassistant.components.input_number import DOMAIN as INPUT_NUMBER_DOMAIN
-)
 
 from homeassistant.components.sensor import DOMAIN as SENSOR_DOMAIN
 from homeassistant.const import CONF_MAXIMUM, CONF_MINIMUM, CONF_MODE, CONF_NAME
@@ -122,7 +121,9 @@ OPTIONS_PID_SCHEMA = OPTIONS_BASE_SCHEMA_PART1.extend(
     vol.Schema(
         {
             vol.Optional(CONF_INPUT2): selector.EntitySelector(
-                selector.EntitySelectorConfig(domain=[SENSOR_DOMAIN])
+                selector.EntitySelectorConfig(
+                    domain=[SENSOR_DOMAIN, INPUT_NUMBER_DOMAIN]
+                )
             ),
         }
     ).schema

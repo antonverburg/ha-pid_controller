@@ -312,4 +312,5 @@ class PidEntity(RestoreNumber, PidBaseClass):
                 )  # Use set-state to be as much type-independent as possible
 
         self._attr_last_cycle_start = dt_util.utcnow().replace(microsecond=0)
+        _LOGGER.debug("In timer")
         self.async_write_ha_state()

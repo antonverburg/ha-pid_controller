@@ -80,7 +80,10 @@ class PidBaseClass(Entity):
         """
         self.async_on_remove(
             async_track_time_interval(
-                self.hass, self._async_pid_cycle, self._attr_cycle_time
+                self.hass,
+                self._async_pid_cycle,
+                self._attr_cycle_time,
+                cancel_on_shutdown=True,
             )
         )
 
