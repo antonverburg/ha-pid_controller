@@ -66,33 +66,33 @@ number:
 ```
 
 ### Configuration parameters
-name: Name of the PID controller.
+- name: Name of the PID controller.
   > required: true | type: string
-output: `entity_id` for the output value. Must be a number device. The output will be limited to the minimum and maximum value of this number.
+- output: `entity_id` for the output value. Must be a number device. The output will be limited to the minimum and maximum value of this number.
   > required: true | type: string
-input1: `entity_id` for input sensor. Must be a numerical sensor.
+- input1: `entity_id` for input sensor. Must be a numerical sensor.
   > required: true | type: string
-input2: Optional secondary input sensor. If selected, the controller will work in differential mode.
+- input2: Optional secondary input sensor. If selected, the controller will work in differential mode.
   > required: false default: `(left empty)`| type: string
-kp: Proportional gain factor, directly gaining the error to compensate the fault (Kp).
+- kp: Proportional gain factor, directly gaining the error to compensate the fault (Kp).
   > required: false | default: 1.0 | type: float
-ki: Integration factor, reducing the offset fault over time (Ki).
+- ki: Integration factor, reducing the offset fault over time (Ki).
   > required: false | default: 0.1 | type: float
-kd: Differential factor, damping the overshoot (Kd).
+- kd: Differential factor, damping the overshoot (Kd).
   > required: false | default: 0.0 | type: float
-direction: Regulation direction. When 'direct', the output will increase to decrease fault. When 'reverse', the output will decrease to decrease fault.
+- direction: Regulation direction. When 'direct', the output will increase to decrease fault. When 'reverse', the output will decrease to decrease fault.
   > required: false | default: direct | type: string `('direct' or 'reverse')`
-minimum: Minimal value of the pid_controller number setpoint.
+- minimum: Minimal value of the pid_controller number setpoint.
   > required: false | default: 0 | type: float
-maximum: Maximal value of the pid_controller number setpoint.
+- maximum: Maximal value of the pid_controller number setpoint.
   > required: false | default: 100 | type: float
-cycle_time: Cycle time for the controller loop.
+- cycle_time: Cycle time for the controller loop.
   > required: false | default: 00:30:00 | type: time_period
-step: Step value. Smallest value `0.001`.
+- step: Step value. Smallest value `0.001`.
   > required: false | type: float | default: 1
-mode: Control how the number should be displayed in the UI. Can be set to `box` or `slider` to force a display mode.
+- mode: Control how the number should be displayed in the UI. Can be set to `box` or `slider` to force a display mode.
   > required: false | type: string | default: '"auto"'
-unique_id: Unique id to be able to configure the entity in the UI.
+- unique_id: Unique id to be able to configure the entity in the UI.
   > required: false | type: string
 
 ### Full configuration example
