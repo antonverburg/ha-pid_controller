@@ -11,6 +11,11 @@ from homeassistant.components.number import (
     DEFAULT_STEP,
     DOMAIN as NUMBER_DOMAIN,
 )
+
+
+from homeassistant.components.input_number import DOMAIN as INPUT_NUMBER_DOMAIN
+)
+
 from homeassistant.components.sensor import DOMAIN as SENSOR_DOMAIN
 from homeassistant.const import CONF_MAXIMUM, CONF_MINIMUM, CONF_MODE, CONF_NAME
 from homeassistant.helpers import selector
@@ -60,10 +65,10 @@ _PID_DIRECTIONS = [
 OPTIONS_BASE_SCHEMA_PART1 = vol.Schema(
     {
         vol.Required(CONF_OUTPUT): selector.EntitySelector(
-            selector.EntitySelectorConfig(domain=[NUMBER_DOMAIN]),
+            selector.EntitySelectorConfig(domain=[NUMBER_DOMAIN, INPUT_NUMBER_DOMAIN]),
         ),
         vol.Required(CONF_INPUT1): selector.EntitySelector(
-            selector.EntitySelectorConfig(domain=[SENSOR_DOMAIN]),
+            selector.EntitySelectorConfig(domain=[SENSOR_DOMAIN, INPUT_NUMBER_DOMAIN]),
         ),
     }
 )
