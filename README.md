@@ -10,8 +10,12 @@
 [![Discord][discord-shield]][discord]
 [![Community Forum][forum-shield]][forum]
 
-This integration contains a PID regulator. The value for an output number entity will be calculated using the Proportional–Integral–Derivative algorithm (PID, See [wikipedia](https://en.wikipedia.org/wiki/PID_controller) ). The implementation of the PID controller contains bumpless operation, and is prevented against integral windup by clipping of the output value to the minimum and maximum of the corresponding output number entity.
+This integration contains a PID regulator. The value for an output number entity will be calculated using the Proportional–Integral–Derivative algorithm (PID, See [wikipedia](https://en.wikipedia.org/wiki/PID_controller) ). 
+
+The implementation of the PID controller contains bumpless operation, and is prevented against integral windup by clipping of the output value to the minimum and maximum of the corresponding output number entity.
+
 This controller is typically useful in regulated systems. For example to regulate the speed of a water pump in a heat collector to keep the temperature difference between the outgoing and incomming water stream on a certain level, so that the heat collector will perform optimally.
+
 Setting up the optimal parameters for a PID controller can be a tough job. Depending on your particular job, you might already know more or less what the parameters should be. If required, you could use [manual tuning][https://en.wikipedia.org/wiki/PID_controller#Manual_tuning] to find optimal parameters. A small summary for PID tuning:
 - For kp, start with a small number (1) and gradually make it bigger if you see that the direct reaction of the controller is too low. Increase the kp, until the output oscillates, then set it to half of this value.
 - For ki, keep this number to 0 until kp is set. Then, start with a very small number (0.01). If you see that the reaction over time is only slowly rising, then increase it, until the controller regulates to the setpoint in a reasonable amount of time.
