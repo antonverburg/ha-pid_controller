@@ -5,7 +5,11 @@
     "@antonverburg"
   ],
   "config_flow": true,
-  "dependencies": [],
+  "dependencies": [
+    "sensor",
+    "number",
+    "input_number"
+  ],
   "documentation": "https://github.com/ludeeus/antonverburg/ha-pid_controller/issues",
   "homekit": {},
   "iot_class": "calculated",
