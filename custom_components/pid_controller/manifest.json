@@ -1,15 +1,19 @@
 {
   "domain": "pid_controller",
   "name": "PID Controller",
-  "codeowners": ["@antonverburg"],
+  "codeowners": [
+    "@antonverburg"
+  ],
   "config_flow": true,
+  "dependencies": [],
   "documentation": "https://github.com/ludeeus/antonverburg/ha-pid_controller/issues",
-  "dependencies": ["sensor", "number"],
   "homekit": {},
   "iot_class": "calculated",
   "issue_tracker": "https://github.com/ludeeus/antonverburg/ha-pid_controller/issues",
   "quality_scale": "platinum",
-  "requirements": ["dvg-pid-controller==2.1.0"],
+  "requirements": [
+    "dvg-pid-controller==2.1.0"
+  ],
   "ssdp": [],
   "version": "0.9.0",
   "zeroconf": []
