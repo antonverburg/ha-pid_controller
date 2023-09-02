@@ -16,7 +16,9 @@ jobs:
     steps:
       - name: "Checkout the repository"
         uses: "actions/checkout@v3.5.2"
-
+        with:
+          submodules: 'true'
+    
       - name: "Adjust version number"
         shell: "bash"
         run: |
