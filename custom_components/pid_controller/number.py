@@ -34,7 +34,7 @@ from homeassistant.helpers.reload import async_setup_reload_service
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
 import homeassistant.util.dt as dt_util
 
-from . import PLATFORMS, PidBaseClass
+from .ha_pid_shared import PidBaseClass
 from .const import (
     ATTR_INPUT1,
     ATTR_INPUT2,
@@ -61,6 +61,7 @@ from .const import (
     MODE_SLIDER,
     PID_DIR_DIRECT,
     PID_DIR_REVERSE,
+    PLATFORMS,
 )
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(

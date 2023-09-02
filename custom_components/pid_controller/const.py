@@ -1,31 +1,36 @@
 """Constants for the PID Controller integration."""
-DOMAIN = "pid_controller"
-PLATFORMS = ["number"]
+from homeassistant.const import Platform
 
-ATTR_CYCLE_TIME = "cycle_time"
-ATTR_LAST_CYCLE_START = "last_cycle_start"
-ATTR_PID_ERR = "pid_error"
-ATTR_PID_KP = "kp"
-ATTR_PID_KI = "ki"
-ATTR_PID_KD = "kd"
-ATTR_PID_ENABLE = "pid_enable"
-ATTR_PID_INPUT = "pid_input"
-ATTR_PID_OUTPUT = "pid_output"
-ATTR_PID_ERROR = "pid_error"
+from .ha_pid_shared.const import (
+    ATTR_CYCLE_TIME,
+    ATTR_LAST_CYCLE_START,
+    ATTR_PID_ENABLE,
+    ATTR_PID_ERROR,
+    ATTR_PID_INPUT,
+    ATTR_PID_KD,
+    ATTR_PID_KI,
+    ATTR_PID_KP,
+    ATTR_PID_OUTPUT,
+    ATTR_VALUE,
+    CONF_CYCLE_TIME,
+    CONF_PID_KD,
+    CONF_PID_KI,
+    CONF_PID_KP,
+    SERVICE_ENABLE,
+)
+
+DOMAIN = "pid_controller"
+PLATFORMS = [Platform.NUMBER]
+
 ATTR_INPUT1 = "input1"
 ATTR_INPUT2 = "input2"
 ATTR_OUTPUT = "output"
-ATTR_VALUE = "value"
 
 CONF_NUMBERS = "numbers"
-CONF_CYCLE_TIME = "cycle_time"
 CONF_INPUT1 = "input1"
 CONF_INPUT2 = "input2"
 CONF_OUTPUT = "output"
 CONF_STEP = "step"
-CONF_PID_KP = "kp"
-CONF_PID_KI = "ki"
-CONF_PID_KD = "kd"
 CONF_PID_DIR = "direction"
 
 MODE_SLIDER = "slider"
@@ -35,7 +40,6 @@ MODE_AUTO = "auto"
 SERVICE_SET_KI = "set_ki"
 SERVICE_SET_KP = "set_kp"
 SERVICE_SET_KD = "set_kd"
-SERVICE_ENABLE = "enable"
 
 PID_DIR_DIRECT = "direct"
 PID_DIR_REVERSE = "reverse"
