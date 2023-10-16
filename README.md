@@ -10,7 +10,7 @@
 [![Discord][discord-shield]][discord]
 [![Community Forum][forum-shield]][forum]
 
-This integration contains a PID regulator. The value for an output number entity will be calculated using the Proportional–Integral–Derivative algorithm (PID, See [wikipedia](https://en.wikipedia.org/wiki/PID_controller) ). 
+This integration contains a PID regulator. The value for an output number entity will be calculated using the [Proportional–Integral–Derivative algorithm (PID)](https://en.wikipedia.org/wiki/PID_controller). 
 
 The implementation of the PID controller contains bumpless operation, and is prevented against integral windup by clipping of the output value to the minimum and maximum of the corresponding output number entity.
 
@@ -27,7 +27,7 @@ The PID controller code is shared with the [PID thermostat][pid_thermostat]. As 
 
 Platform | Description
 -- | --
-`number` | This platform can be used to control a number entity output to regulate a sensor value to a specific setpoint. The value of the number entity is the setpoint. As a sensor, any numerical sensor entity can be used. If two sensors are configured, the PID controller will act as a differential controller, using the difference between the two sensor values as input signal.
+`number` | This platform can be used to control a number entity output to regulate a sensor value to a specific setpoint. The value of the controlker entity is the setpoint. As a sensor, any numerical sensor entity can be used. If two sensors are configured, the PID controller will act as a differential controller, using the difference between the two sensor values as input signal.
 
 
 ## Installation
