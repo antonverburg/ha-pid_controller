@@ -82,7 +82,7 @@ async def test_pid_controller_kp(hass: HomeAssistant, setup_comp) -> None:
 
     # Now set pid setpoint to value 20. Input remains 10, but pid is not yet enabled,
     # so output state should remain 0.
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         Platform.NUMBER,
         SERVICE_SET_VALUE,
         {ATTR_VALUE: 20, ATTR_ENTITY_ID: pid},
@@ -93,7 +93,7 @@ async def test_pid_controller_kp(hass: HomeAssistant, setup_comp) -> None:
     assert hass.states.get(output).state == "0.0"
 
     # Enable PID controller. Output should run up after a while to 10
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         "pid_controller",
         SERVICE_ENABLE,
         {ATTR_VALUE: True, ATTR_ENTITY_ID: pid},
@@ -105,7 +105,7 @@ async def test_pid_controller_kp(hass: HomeAssistant, setup_comp) -> None:
     # Check if output is equal to 10, as Kp=1
     # and difference between in- and output is 10.
     assert hass.states.get(output).state == "10.0"
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         "homeassistant",
         "stop",
         None,
@@ -150,7 +150,7 @@ async def test_pid_controller_kp_reverse(hass: HomeAssistant, setup_comp) -> Non
 
     # Now set pid setpoint to value 20. Input remains 10, but pid is not yet enabled,
     # so output state should remain 0.
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         Platform.NUMBER,
         SERVICE_SET_VALUE,
         {ATTR_VALUE: 20, ATTR_ENTITY_ID: pid},
@@ -161,7 +161,7 @@ async def test_pid_controller_kp_reverse(hass: HomeAssistant, setup_comp) -> Non
     assert hass.states.get(output).state == "0.0"
 
     # Enable PID controller. Output should run down after a while to -10
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         "pid_controller",
         SERVICE_ENABLE,
         {ATTR_VALUE: True, ATTR_ENTITY_ID: pid},
@@ -176,7 +176,7 @@ async def test_pid_controller_kp_reverse(hass: HomeAssistant, setup_comp) -> Non
     # Now invert in- and output; output state should
     # change polarity.
     # Set pid setpoint to value 10.
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         Platform.NUMBER,
         SERVICE_SET_VALUE,
         {ATTR_VALUE: 10, ATTR_ENTITY_ID: pid},
@@ -189,12 +189,14 @@ async def test_pid_controller_kp_reverse(hass: HomeAssistant, setup_comp) -> Non
     # Check if output is equal to 10, as Kp=1
     # and difference between in- and output is -10.
     assert hass.states.get(output).state == "10.0"
-    assert await hass.services.async_call(
+
+    await hass.services.async_call(
         "homeassistant",
         "stop",
         None,
         blocking=True,
     )
+
 
 
 async def test_pid_controller_kp_differential(hass: HomeAssistant, setup_comp) -> None:
@@ -230,7 +232,7 @@ async def test_pid_controller_kp_differential(hass: HomeAssistant, setup_comp) -
 
     # Now set pid setpoint to value 20. Input remains 10, but pid is not yet enabled,
     # so output state should remain 0.
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         Platform.NUMBER,
         SERVICE_SET_VALUE,
         {ATTR_VALUE: 20, ATTR_ENTITY_ID: pid},
@@ -241,7 +243,7 @@ async def test_pid_controller_kp_differential(hass: HomeAssistant, setup_comp) -
     assert hass.states.get(output).state == "0.0"
 
     # Enable PID controller. Output should run down after a while to -10
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         "pid_controller",
         SERVICE_ENABLE,
         {ATTR_VALUE: True, ATTR_ENTITY_ID: pid},
@@ -253,12 +255,14 @@ async def test_pid_controller_kp_differential(hass: HomeAssistant, setup_comp) -
     # Check if output is equal to 2, as Kp=1
     # and difference between in- two inputs is 2.
     assert hass.states.get(output).state == "18.0"
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         "homeassistant",
         "stop",
         None,
         blocking=True,
     )
+
+
 
 
 async def test_pid_controller_ki(hass: HomeAssistant, setup_comp) -> None:
@@ -289,7 +293,7 @@ async def test_pid_controller_ki(hass: HomeAssistant, setup_comp) -> None:
 
     # Now set pid setpoint to value 20. Input remains 10, but pid is not yet enabled,
     # so output state should remain 0.
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         Platform.NUMBER,
         SERVICE_SET_VALUE,
         {ATTR_VALUE: 20, ATTR_ENTITY_ID: pid},
@@ -301,7 +305,7 @@ async def test_pid_controller_ki(hass: HomeAssistant, setup_comp) -> None:
 
     # Enable PID controller. Output should run up after a while to 100
     # (as that's the max of the output)
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         "pid_controller",
         SERVICE_ENABLE,
         {ATTR_VALUE: True, ATTR_ENTITY_ID: pid},
@@ -313,12 +317,13 @@ async def test_pid_controller_ki(hass: HomeAssistant, setup_comp) -> None:
     # Check if output is equal to 100, as Ki=100
     # and difference between in- and output is 10.
     assert hass.states.get(output).state == "100.0"
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         "homeassistant",
         "stop",
         None,
         blocking=True,
     )
+    await asyncio.sleep(cycle_time * 10)
 
 
 async def test_pid_controller_kd(hass: HomeAssistant, setup_comp) -> None:
@@ -349,7 +354,7 @@ async def test_pid_controller_kd(hass: HomeAssistant, setup_comp) -> None:
 
     # Now set pid setpoint to value 20. Input remains 10, but pid is not yet enabled,
     # so output state should remain 0.
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         Platform.NUMBER,
         SERVICE_SET_VALUE,
         {ATTR_VALUE: 20, ATTR_ENTITY_ID: pid},
@@ -361,7 +366,7 @@ async def test_pid_controller_kd(hass: HomeAssistant, setup_comp) -> None:
 
     # Enable PID controller. Output should run up after a while to 100
     # (as that's the max of the output)
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         "pid_controller",
         SERVICE_ENABLE,
         {ATTR_VALUE: True, ATTR_ENTITY_ID: pid},
@@ -373,7 +378,7 @@ async def test_pid_controller_kd(hass: HomeAssistant, setup_comp) -> None:
     # Check if output is equal to 0, as we only have a Kd100
     # and  input remains always 10.0
     assert hass.states.get(output).state == "0.0"
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         "homeassistant",
         "stop",
         None,
@@ -405,7 +410,7 @@ async def test_output_does_not_exist(hass: HomeAssistant, setup_comp, caplog) ->
 
     # test if an error was generated
     assert "ERROR" in caplog.text
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         "homeassistant",
         "stop",
         None,
@@ -474,7 +479,7 @@ async def test_outside_range(hass: HomeAssistant, setup_comp) -> None:
     assert hass.states.get(output).state == "0.0"
 
     # Enable PID controller and repeat
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         "pid_controller",
         SERVICE_ENABLE,
         {ATTR_VALUE: True, ATTR_ENTITY_ID: pid},
@@ -511,7 +516,7 @@ async def test_outside_range(hass: HomeAssistant, setup_comp) -> None:
     assert hass.states.get(pid).state == "20.0"
     assert hass.states.get(output).state == "10.0"
     # Stop hass
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         "homeassistant",
         "stop",
         None,
@@ -571,7 +576,7 @@ async def test_bad_value(hass: HomeAssistant, setup_comp, caplog) -> None:
 
     # Now repeat with controller enabled
     # Enable PID controller and repeat
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         "pid_controller",
         SERVICE_ENABLE,
         {ATTR_VALUE: True, ATTR_ENTITY_ID: pid},
@@ -599,7 +604,7 @@ async def test_bad_value(hass: HomeAssistant, setup_comp, caplog) -> None:
     )
     assert hass.states.get(pid).state == "0.0"
 
-    assert await hass.services.async_call(
+    await hass.services.async_call(
         "homeassistant",
         "stop",
         None,
